@@ -4,3 +4,6 @@ node_modules/
 #Ignore packages
 package.json
 package-lock.json
+
+#Ignore environment
+.env
