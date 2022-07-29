@@ -23,7 +23,7 @@
           <th scope="col">Id</th>
           <th scope="col">Titulo</th>
           <th scope="col">Fecha de creación</th>
-          <th scope="col">Autor</th>
+          <!-- <th scope="col">Autor</th> -->
           <th scope="col">Comentarios</th>
           <th scope="col">Acciones</th>
         </tr>
@@ -34,8 +34,8 @@
             <th scope="row"> <%= blog.id %> </th>
             <td> <%= blog.title %> </td>
             <td> <%= blog.createdAt %> </td>
-            <td> <%= blog.author.firstname %> <%= blog.author.lastname %></td>
-            <td> <%= blog.comments.length %> </td>
+            <!-- <td> <%#= blog.user.firstname %> <%#= blog.user.lastname %></td> -->
+            <td> <%#= blog.comments.length %> </td>
             <td>
               <a style="text-decoration: none;" href="/blog/edit/<%= blog.id %>">
                 <button type="button" class="btn btn-sm btn-primary">Editar</button>

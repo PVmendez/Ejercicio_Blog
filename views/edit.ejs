@@ -12,15 +12,15 @@
 
     <h1 class="my-5">Editar articulo</h1>
 
-    <form action="/blog" method="post">
+    <form action="/blog/edit/<%= blog.id %>" method="post">
 
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="title" value="<%= blog.title %> ">
+        <input name="title" type="text" class="form-control" id="title" value="<%= blog.title %> ">
         <label for="title">Título</label>
       </div>
 
       <div class="form-floating">
-        <textarea class="form-control" value="blog.content" id="content" style="height: 30em"></textarea>
+        <input name="content" class="form-control" value="<%= blog.content %>" id="content" style="height: 30em">
         <label for="content">Contenido</label>
       </div>
 
@@ -32,15 +32,15 @@
       <label class="form-label">Autor</label>
       <div class="row g-3 mb-3">
         <div class="col form-floating">
-          <input type="text" class="form-control" value="<%= blog.author.firstname %>" aria-label="Nombre" name="firstname">
+          <input type="text" class="form-control" value="<%#= blog.author.firstname %>" aria-label="Nombre" name="firstname">
           <label for="firstname">Nombre</label>
         </div>
         <div class="col form-floating">
-          <input type="text" class="form-control" value="<%= blog.author.lastname %>" aria-label="Apellido" name="lastname">
+          <input type="text" class="form-control" value="<%#= blog.author.lastname %>" aria-label="Apellido" name="lastname">
           <label for="firstname">Apellido</label>
         </div>
         <div class="col form-floating">
-          <input type="text" class="form-control" value="<%= blog.author.email %>" aria-label="E-mail" name="email">
+          <input type="text" class="form-control" value="<%#= blog.author.email %>" aria-label="E-mail" name="email">
           <label for="firstname">E-mail</label>
         </div>
       </div>
