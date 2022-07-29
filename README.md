@@ -3,6 +3,11 @@
 ## Modulos Utilizados
 
 ### - Express
+
 ### - EJS
+
 ### - MySQL2
-### - Dotenv. 
+
+### - Dotenv.
+
+### - Sequelize
