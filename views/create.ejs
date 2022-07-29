@@ -15,18 +15,18 @@
     <form action="/blog" method="post">
 
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="title" placeholder="Título">
+        <input name="title" type="text" class="form-control" id="title" placeholder="Título">
         <label for="title">Título</label>
       </div>
 
       <div class="form-floating">
-        <textarea class="form-control" placeholder="Contenido" id="content" style="height: 30em"></textarea>
+        <textarea name="content" class="form-control" placeholder="Contenido" id="content" style="height: 30em"></textarea>
         <label for="content">Contenido</label>
       </div>
 
       <label for="imgUpload" class="form-label">Imagen</label>
       <div class="input-group mb-3">
-        <input type="file" class="form-control" id="imgUpload">
+        <input name="image" type="file" class="form-control" id="imgUpload">
       </div>
       
       <label class="form-label">Autor</label>
