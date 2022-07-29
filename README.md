@@ -1,5 +1,8 @@
 # Ejercicio_Blog
 
-##Modulos Utilizados
+## Modulos Utilizados
 
-### - Express, EJS, MySQL2 y Dotenv. 
+### - Express
+### - EJS
+### - MySQL2
+### - Dotenv. 
