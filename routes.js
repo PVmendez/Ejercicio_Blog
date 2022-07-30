@@ -3,7 +3,7 @@ const router = express.Router();
 const blogController = require("./controllers/blogController");
 
 //Muestra todos los articulos en la vista HOME
-router.get("/", blogController.index);
+router.get("/blog", blogController.index);
 
 //Dirige a una vista para agregar un articulo nuevo
 router.get("/blog/create", blogController.create);

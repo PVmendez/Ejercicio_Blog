@@ -12,20 +12,37 @@ const blogController = {
 	store: async function (req, res) {
 		console.log(req.body);
 		const { title, content, image } = req.body;
+		if (!tile || !content || !image) {
+			res.send("Error");
+		}
 		const date = new Date();
-		const blogs = await Article.create({ title, content, image, date });
+		const blogs = await Article.create({
+			title,
+			content,
+			image,
+			date,
+			userId: 1,
+		});
 		res.redirect("/admin");
 	},
 	show: async function (req, res) {
 		const blogs = await Article.findAll();
-		res.render("");
+		res.render("blog");
 	},
 	edit: async function (req, res) {
-		const blog = await Article.findByPk(req.params.id);
+		const blog = await Article.findOne({
+			where: {
+				id: req.params.id,
+			},
+			include: User,
+		});
 		res.render("edit", { blog });
 	},
 	update: async function (req, res) {
 		const { title, content, image } = req.body;
+		if (!tile || !content || !image) {
+			res.send("Error");
+		}
 		const date = new Date();
 		const blog = await Article.update(
 			{ title, content, image, date },
@@ -46,8 +63,17 @@ const blogController = {
 		res.redirect("/admin");
 	},
 	admin: async function (req, res) {
-		const blogs = await Article.findAll();
-		res.render("admin", { blogs });
+		// Renderizo el html de manera asincrona
+		const ejs = require("ejs");
+		const blogs = await Article.findAll({ include: User, Comment });
+		const html = await ejs.renderFile(
+			__dirname + "/../views/admin.ejs",
+			{ blogs },
+			{
+				async: true,
+			}
+		);
+		res.send(html);
 	},
 };
 

@@ -15,37 +15,24 @@
     <form action="/blog/edit/<%= blog.id %>" method="post">
 
       <div class="form-floating mb-3">
-        <input name="title" type="text" class="form-control" id="title" value="<%= blog.title %> ">
+        <input name="title" type="text" class="form-control" id="title" value="<%= blog.title %>" required>
         <label for="title">Título</label>
       </div>
 
       <div class="form-floating">
-        <input name="content" class="form-control" value="<%= blog.content %>" id="content" style="height: 30em">
+        <textarea name="content" class="form-control" id="content" style="height: 30em" required><%= blog.content %></textarea>
         <label for="content">Contenido</label>
       </div>
 
-      <label for="imgUpload" class="form-label">Imagen</label>
+      <label for="imgLink" class="form-label">Imagen URL</label>
       <div class="input-group mb-3">
-        <input type="file" class="form-control" id="imgUpload" value=<% blog.img %> >
-      </div>
-      
-      <label class="form-label">Autor</label>
-      <div class="row g-3 mb-3">
-        <div class="col form-floating">
-          <input type="text" class="form-control" value="<%#= blog.author.firstname %>" aria-label="Nombre" name="firstname">
-          <label for="firstname">Nombre</label>
-        </div>
-        <div class="col form-floating">
-          <input type="text" class="form-control" value="<%#= blog.author.lastname %>" aria-label="Apellido" name="lastname">
-          <label for="firstname">Apellido</label>
-        </div>
-        <div class="col form-floating">
-          <input type="text" class="form-control" value="<%#= blog.author.email %>" aria-label="E-mail" name="email">
-          <label for="firstname">E-mail</label>
-        </div>
+        <input value="<%= blog.image %>" name="image" type="text" class="form-control" id="imgLink" required>
       </div>
 
       <button type="submit" class="btn btn-success">Guardar</button>
+      <a href="/admin">
+        <button type="button" class="btn btn-outline-secondary">Volver</button>
+      </a>
 
     </form>
   </div>
