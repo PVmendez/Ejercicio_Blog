@@ -15,37 +15,24 @@
     <form action="/blog" method="post">
 
       <div class="form-floating mb-3">
-        <input name="title" type="text" class="form-control" id="title" placeholder="Título">
+        <input name="title" type="text" class="form-control" id="title" placeholder="Título" required>
         <label for="title">Título</label>
       </div>
 
       <div class="form-floating">
-        <textarea name="content" class="form-control" placeholder="Contenido" id="content" style="height: 30em"></textarea>
+        <textarea name="content" class="form-control" id="content" style="height: 30em" required></textarea>
         <label for="content">Contenido</label>
       </div>
 
-      <label for="imgUpload" class="form-label">Imagen</label>
+      <label for="imgLink" class="form-label">Imagen URL</label>
       <div class="input-group mb-3">
-        <input name="image" type="file" class="form-control" id="imgUpload">
-      </div>
-      
-      <label class="form-label">Autor</label>
-      <div class="row g-3 mb-3">
-        <div class="col form-floating">
-          <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" name="firstname">
-          <label for="firstname">Nombre</label>
-        </div>
-        <div class="col form-floating">
-          <input type="text" class="form-control" placeholder="Apellido" aria-label="Apellido" name="lastname">
-          <label for="firstname">Apellido</label>
-        </div>
-        <div class="col form-floating">
-          <input type="text" class="form-control" placeholder="E-mail" aria-label="E-mail" name="email">
-          <label for="firstname">E-mail</label>
-        </div>
+        <input name="image" type="text" class="form-control" id="imgLink" required>
       </div>
 
       <button type="submit" class="btn btn-success">Guardar</button>
+      <a href="/admin">
+        <button type="button" class="btn btn-outline-secondary">Volver</button>
+      </a>
 
     </form>
   </div>
