@@ -16,7 +16,7 @@ router.post("/blog", blogController.store);
 router.get("/blog/:id", blogController.comentariosDeArticulo);
 
 //Post articulo de la id
-router.post("blog/:id", commentController.postearComentario);
+router.post("/blog/:id", commentController.postearComentario);
 
 // get editar articulo
 router.get("/editar/:id", commentController.editarComentario);

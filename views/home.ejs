@@ -8,156 +8,121 @@
     <title>Blog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="../public/css/blog.css" rel="stylesheet">
 
 </head>
 
 <body class="bg-light">
     <div class="container bg-dark text-white">
         <section class="p-5">
-            <nav>
-
-            </nav>
+            <header>
+                <!-- Nav -->
+                <nav class="navbar navbar-expand-lg text-white ">
+                    <div class="container-fluid p-3 ">
+                        <a class="navbar-brand" href="#">Navbar</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav textsNavBar">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link" href="#">Features</a>
+                                <a class="nav-link" href="#">Pricing</a>
+                                <a class="nav-link disabled">Disabled</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
 
             <div class="row">
                 <hr class="my-12">
-                <h1 class="display-1 fw-bold text-center">THE BLOG</h1>
+                <h1 class="display-1 fw-bold text-center d-inline w-100">THE BLOG</h1>
                 <hr class="my-12">
             </div>
             <div class="row d-flex">
                 <div class="col-lg-6 col-md-12">
-                    <div class="card w-90 d-inline-block h-90 bg-transparent">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <div class="text-secondary">Date</div>
-                            <h1>Title</h1>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk
-                                of the card's content.</p>
+                    <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[0].id%>">
+                        <div class="card w-90 d-inline-block h-90 bg-transparent">
+                            <img src="<%-orderedBlogs[0].image%>" class="card-img-top" alt="articleImage">
+                            <div class="card-body">
+                                <div class="text-secondary">
+                                    <%= orderedBlogs[0].date%>
+                                </div>
+                                <h1>
+                                    <%= orderedBlogs[0].title%>
+                                </h1>
+                                <p class="card-text">
+                                    <%= orderedBlogs[0].content%>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-6 col-md-12">
-                    <div class="card mb-3 border-0 mx-auto bg-transparent" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="..." class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="text-secondary">Date</div>
-                                    <h1>Title</h1>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk
-                                        of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-12">
-
-                    <div class="card mb-3 border-0 mx-auto bg-transparent" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="..." class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="text-secondary">Date</div>
-                                    <h1>Title</h1>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk
-                                        of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-12">
-
-                    <div class="card mb-3 border-0 mx-auto bg-transparent" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="..." class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="text-secondary">Date</div>
-                                    <h1>Title</h1>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk
-                                        of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <% let cont=orderedBlogs.length; %>
+                        <% if(cont>4){ %>
+                            <% cont=4; %>
+                                <% } %>
+                                    <% for(let i=1; i<cont; i++) { %>
+                                        <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[i].id%>">
+                                            <div class="card mb-3 border-0 mx-auto bg-transparent"
+                                                style="max-width: 540px;">
+                                                <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <img src="<%-orderedBlogs[i].image%>"
+                                                            class="img-fluid rounded-start" alt="...">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <div class="text-secondary">
+                                                                <%= orderedBlogs[i].date%>
+                                                            </div>
+                                                            <h1>
+                                                                <%= orderedBlogs[i].title%>
+                                                            </h1>
+                                                            <p class="card-text">
+                                                                <%= orderedBlogs[i].content%>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <hr class="my-12">
+                                        <% } %>
                 </div>
         </section>
     </div>
     <div class="container bg-white ">
         <section class="p-5">
-            <h5 class="mb-4 mt-4 text-secondary fw-light">More Articles</h5>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-6 ">
-                    <a class="text-decoration-none text-reset" href="#">
-                        <div class="card border-0" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="text-secondary">Date</div>
-                                <h1>Title</h1>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                            </div>
+            <% if(orderedBlogs.length>4){ %>
+                <h5 class="mb-4 mt-4 text-secondary fw-light">More Articles</h5>
+                <div class="row">
+                    <% for(let i=4; i<orderedBlogs.length; i++){ %>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6 ">
+                            <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[i].id%>">
+                                <div class="card border-0" style="width: 18rem;">
+                                    <img src="<%= orderedBlogs[i].image%>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <div class="text-secondary">
+                                            <%= orderedBlogs[i].date%>
+                                        </div>
+                                        <h1>
+                                            <%= orderedBlogs[i].title%>
+                                        </h1>
+                                        <p class="card-text">
+                                            <%= orderedBlogs[i].content%>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                        <% } %>
+                            <% } %>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-6 ">
-                    <a class="text-decoration-none text-reset" href="#">
-                        <div class="card border-0" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="text-secondary">Date</div>
-                                <h1>Title</h1>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-6 ">
-                    <a class="text-decoration-none text-reset" href="#">
-                        <div class="card border-0" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="text-secondary">Date</div>
-                                <h1>Title</h1>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-6 ">
-                    <a class="text-decoration-none text-reset" href="#">
-                        <div class="card border-0" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <div class="text-secondary">Date</div>
-                                <h1>Title</h1>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
         </section>
     </div>
 </body>

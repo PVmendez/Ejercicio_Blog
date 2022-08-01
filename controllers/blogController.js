@@ -2,9 +2,12 @@ const { sequelize, User, Comment, Article } = require("../models/Model");
 
 const blogController = {
 	index: async (req, res) => {
-		console.log(Article);
-		const blogs = await Article.findAll();
-		res.render("home", { blogs });
+		const blogs = await Article.findAll({ order: [['updatedAt', 'DESC']] });
+		const orderedBlogs = [];
+		for (const data of blogs) {
+			orderedBlogs.push(data.dataValues);
+		}
+		res.render("home", { orderedBlogs });
 	},
 	create: async function (req, res) {
 		res.render("create");
@@ -76,17 +79,17 @@ const blogController = {
 		res.send(html);
 	},
 	comentariosDeArticulo: async (req, res) => {
-    console.log(req.params.id);
-    const articles = await Article.findOne({ where: { id: req.params.id } });
+		console.log(req.params.id);
+		const articles = await Article.findOne({ where: { id: req.params.id } });
 
-    if (articles) {
-      const comments = await Comment.findAll({ where: { articleId: req.params.id } });
-      const user = await User.findOne({ where: { id: articles.userId } });
-        res.render("comments", { articles, comments, user });
-    } else {
-      res.redirect("/");
-    }
-  },
+		if (articles) {
+			const comments = await Comment.findAll({ where: { articleId: req.params.id } });
+			const user = await User.findOne({ where: { id: articles.userId } });
+			res.render("comments", { articles, comments, user });
+		} else {
+			res.redirect("/");
+		}
+	},
 };
 
 module.exports = blogController;
