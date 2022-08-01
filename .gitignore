@@ -10,3 +10,7 @@ package-lock.json
 
 #Ignore settings
 .settings.json
+
+#Ignore blog images
+public/images/blogs/
+
