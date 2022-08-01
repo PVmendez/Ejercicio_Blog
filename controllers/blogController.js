@@ -1,6 +1,7 @@
 const { sequelize, User, Comment, Article } = require("../models/Model");
 const formidable = require("formidable");
 const fs = require("fs");
+const slugify = require("slugify");
 
 const blogController = {
 	index: async (req, res) => {
@@ -31,9 +32,18 @@ const blogController = {
 				res.send("Error al crear articulo, titulo o contenido vacio.");
 			} else {
 				const date = new Date();
+				const slug = slugify(fields.title, {
+					replacement: "-",
+					lower: true,
+					strict: true,
+					locale: "en",
+					trim: true,
+				});
+
 				const blogs = await Article.create({
 					title: fields.title,
 					content: fields.content,
+					slug,
 					image: files.image.newFilename,
 					date,
 					userId: 1,
@@ -119,7 +129,10 @@ const blogController = {
 		res.send(html);
 	},
 	comentariosDeArticulo: async (req, res) => {
-		const articles = await Article.findOne({ where: { id: req.params.id } });
+		let articles = await Article.findOne({ where: { id: req.params.id } });
+		if (!articles) {
+			articles = await Article.findOne({ where: { slug: req.params.id } });
+		}
 
 		if (articles) {
 			const comments = await Comment.findAll({
