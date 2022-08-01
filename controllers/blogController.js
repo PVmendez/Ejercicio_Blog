@@ -56,34 +56,36 @@ const blogController = {
 		let transporter = nodemailer.createTransport({
 			host: "smtp.gmail.com",
 			port: 465,
-			secure: true, 
+			secure: true,
 			auth: {
-				user: "valentino.mendez.rey@gmail.com", 
-				pass: "njoajdgqcklieggi", 
+				user: "valentino.mendez.rey@gmail.com",
+				pass: "njoajdgqcklieggi",
 			},
 		});
 
 		const articuloname = "Se ha creado un nuevo articulo ✔";
-		const listreceivers = [ "valentino.mendez.rey@gmail.com", "mercedestorrendell@gmail.com", "sebastianguadalupe00@gmail.com"]
+		const listreceivers = [
+			"valentino.mendez.rey@gmail.com",
+			"mercedestorrendell@gmail.com",
+			"sebastianguadalupe00@gmail.com",
+		];
 
 		let info = await transporter.sendMail({
-			from: 'Remitente', 
-			to: listreceivers, 
-			subject: articuloname, 
+			from: "Remitente",
+			to: listreceivers,
+			subject: articuloname,
 			text: "Articulo nuevo",
 			html: "<img src='https://i.eldiario.com.ec/fotos-manabi-ecuador/2019/03/20190312110000_chayanne-visita-ecuador-en-junio.jpg' width='500' height='500'>",
 		});
 
-		
-
 		transporter.sendMail(info, (error, options) => {
-			if(error) {
+			if (error) {
 				res.status(500).send(error.message);
 			}
 
 			console.log("Email enviado!!!");
 			res.status(200).json(req.body);
-		})
+		});
 	},
 	show: async function (req, res) {
 		const blogs = await Article.findAll();
@@ -107,10 +109,18 @@ const blogController = {
 
 		form.parse(req, async (error, fields, files) => {
 			const date = new Date();
+			const slug = slugify(fields.title, {
+				replacement: "-",
+				lower: true,
+				strict: true,
+				locale: "en",
+				trim: true,
+			});
 			const update = [
 				{
 					title: fields.title,
 					content: fields.content,
+					slug,
 					date,
 				},
 				{
