@@ -432,6 +432,9 @@ body {
   border-radius: 100%;
 }
 
+.hoverWhite:hover{
+  color: white !important;
+}
 
 
 
