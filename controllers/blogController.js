@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const blogController = {
 	index: async (req, res) => {
-		const blogs = await Article.findAll({ order: [['updatedAt', 'DESC']] });
+		const blogs = await Article.findAll({ order: [["updatedAt", "DESC"]] });
 		const orderedBlogs = [];
 		for (const data of blogs) {
 			orderedBlogs.push(data.dataValues);
@@ -80,6 +80,10 @@ const blogController = {
 				res.send("Error al editar articulo, titulo o contenido vacio.");
 			}
 			if (files.image.size !== 0) {
+				const imageName = await Article.findByPk(req.params.id);
+				fs.unlinkSync(
+					__dirname + "/../public/images/blogs/" + imageName.dataValues.image
+				);
 				update[0].image = files.image.newFilename;
 			} else {
 				fs.unlinkSync(files.image.filepath);
@@ -90,7 +94,9 @@ const blogController = {
 	},
 	destroy: async function (req, res) {
 		const imageName = await Article.findByPk(req.params.id);
-		fs.unlinkSync(__dirname + "/../public/images/blogs/" + imageName.dataValues.image);
+		fs.unlinkSync(
+			__dirname + "/../public/images/blogs/" + imageName.dataValues.image
+		);
 
 		const blogs = await Article.destroy({
 			where: {
@@ -116,7 +122,9 @@ const blogController = {
 		const articles = await Article.findOne({ where: { id: req.params.id } });
 
 		if (articles) {
-			const comments = await Comment.findAll({ where: { articleId: req.params.id } });
+			const comments = await Comment.findAll({
+				where: { articleId: req.params.id },
+			});
 			const user = await User.findOne({ where: { id: articles.userId } });
 			res.render("comments", { articles, comments, user });
 		} else {
