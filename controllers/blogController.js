@@ -4,7 +4,6 @@ const fs = require("fs");
 
 const blogController = {
 	index: async (req, res) => {
-		console.log(Article);
 		const blogs = await Article.findAll();
 		res.render("home", { blogs });
 	},
@@ -107,7 +106,6 @@ const blogController = {
 		res.send(html);
 	},
 	comentariosDeArticulo: async (req, res) => {
-		console.log(req.params.id);
 		const articles = await Article.findOne({ where: { id: req.params.id } });
 
 		if (articles) {
