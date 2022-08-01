@@ -7,7 +7,7 @@ const commentController = {
       content: req.body.comentario,
       date: hoy,
       articleId: req.params.id,
-      userId: req.user.id,
+      userId: 1,
     });
 
     res.redirect("/blog/" + req.params.id); 
@@ -38,7 +38,7 @@ const commentController = {
     const comment = await Comment.findOne({ where: { id: req.params.id } });
     if (comment) {
         console.log("entra 1");
-        const destroyComment = await Comment.destroy({ where: { id: req.params.id } }, {});
+        const destroyComment = await Comment.destroy({ where: { id: req.params.id } }, );
         res.redirect("/blog/" + comment.articleId);
     } else {
       console.log("entra 3");
