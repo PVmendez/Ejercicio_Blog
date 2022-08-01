@@ -1,4 +1,6 @@
 const { sequelize, User, Comment, Article } = require("../models/Model");
+const formidable = require("formidable");
+const fs = require("fs");
 
 const blogController = {
 	index: async (req, res) => {
@@ -10,20 +12,32 @@ const blogController = {
 		res.render("create");
 	},
 	store: async function (req, res) {
-		console.log(req.body);
-		const { title, content, image } = req.body;
-		if (!title || !content || !image) {
-			res.send("Error");
-		}
-		const date = new Date();
-		const blogs = await Article.create({
-			title,
-			content,
-			image,
-			date,
-			userId: 1,
+		const form = formidable({
+			multiples: false,
+			uploadDir: __dirname + "/../public/images",
+			keepExtensions: true,
+			allowEmptyFiles: false,
 		});
-		res.redirect("/admin");
+
+		form.parse(req, async (error, fields, files) => {
+			if (
+				!fields.title ||
+				!fields.content ||
+				!files.image.mimetype.includes("image")
+			) {
+				res.send("Error al crear articulo, titulo o contenido vacio.");
+			} else {
+				const date = new Date();
+				const blogs = await Article.create({
+					title: fields.title,
+					content: fields.content,
+					image: files.image.newFilename,
+					date,
+					userId: 1,
+				});
+				res.redirect("/admin");
+			}
+		});
 	},
 	show: async function (req, res) {
 		const blogs = await Article.findAll();
@@ -39,20 +53,37 @@ const blogController = {
 		res.render("edit", { blog });
 	},
 	update: async function (req, res) {
-		const { title, content, image } = req.body;
-		if (!tile || !content || !image) {
-			res.send("Error");
-		}
-		const date = new Date();
-		const blog = await Article.update(
-			{ title, content, image, date },
-			{
-				where: {
-					id: req.params.id,
+		const form = formidable({
+			multiples: false,
+			uploadDir: __dirname + "/../public/images",
+			keepExtensions: true,
+		});
+
+		form.parse(req, async (error, fields, files) => {
+			const date = new Date();
+			const update = [
+				{
+					title: fields.title,
+					content: fields.content,
+					date,
 				},
+				{
+					where: {
+						id: req.params.id,
+					},
+				},
+			];
+			if (!fields.title || !fields.content) {
+				res.send("Error al editar articulo, titulo o contenido vacio.");
 			}
-		);
-		res.redirect("/admin");
+			if (files.image.size !== 0) {
+				update[0].image = files.image.newFilename;
+			} else {
+				fs.unlinkSync(files.image.filepath);
+			}
+			const blog = await Article.update(...update);
+			res.redirect("/admin");
+		});
 	},
 	destroy: async function (req, res) {
 		const blogs = await Article.destroy({
@@ -76,17 +107,19 @@ const blogController = {
 		res.send(html);
 	},
 	comentariosDeArticulo: async (req, res) => {
-    console.log(req.params.id);
-    const articles = await Article.findOne({ where: { id: req.params.id } });
+		console.log(req.params.id);
+		const articles = await Article.findOne({ where: { id: req.params.id } });
 
-    if (articles) {
-      const comments = await Comment.findAll({ where: { articleId: req.params.id } });
-      const user = await User.findOne({ where: { id: articles.userId } });
-        res.render("comments", { articles, comments, user });
-    } else {
-      res.redirect("/");
-    }
-  },
+		if (articles) {
+			const comments = await Comment.findAll({
+				where: { articleId: req.params.id },
+			});
+			const user = await User.findOne({ where: { id: articles.userId } });
+			res.render("comments", { articles, comments, user });
+		} else {
+			res.redirect("/");
+		}
+	},
 };
 
 module.exports = blogController;
