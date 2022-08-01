@@ -12,7 +12,7 @@ const blogController = {
 	store: async function (req, res) {
 		console.log(req.body);
 		const { title, content, image } = req.body;
-		if (!tile || !content || !image) {
+		if (!title || !content || !image) {
 			res.send("Error");
 		}
 		const date = new Date();
@@ -75,6 +75,18 @@ const blogController = {
 		);
 		res.send(html);
 	},
+	comentariosDeArticulo: async (req, res) => {
+    console.log(req.params.id);
+    const articles = await Article.findOne({ where: { id: req.params.id } });
+
+    if (articles) {
+      const comments = await Comment.findAll({ where: { articleId: req.params.id } });
+      const user = await User.findOne({ where: { id: articles.userId } });
+        res.render("comments", { articles, comments, user });
+    } else {
+      res.redirect("/");
+    }
+  },
 };
 
 module.exports = blogController;
