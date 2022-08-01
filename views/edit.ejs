@@ -12,7 +12,7 @@
 
     <h1 class="my-5">Editar articulo</h1>
 
-    <form action="/blog/edit/<%= blog.id %>" method="post">
+    <form action="/blog/edit/<%= blog.id %>" method="post" enctype="multipart/form-data">
 
       <div class="form-floating mb-3">
         <input name="title" type="text" class="form-control" id="title" value="<%= blog.title %>" required>
@@ -23,11 +23,12 @@
         <textarea name="content" class="form-control" id="content" style="height: 30em" required><%= blog.content %></textarea>
         <label for="content">Contenido</label>
       </div>
-
-      <label for="imgLink" class="form-label">Imagen URL</label>
-      <div class="input-group mb-3">
-        <input value="<%= blog.image %>" name="image" type="text" class="form-control" id="imgLink" required>
+      
+      <div class="mb-3">
+        <label for="image" class="form-label">Sube una imagen: </label>
+        <input name="image" class="form-control" type="file" id="image" accept="image/*">
       </div>
+
 
       <button type="submit" class="btn btn-success">Guardar</button>
       <a href="/admin">
