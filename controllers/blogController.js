@@ -14,7 +14,7 @@ const blogController = {
 	store: async function (req, res) {
 		const form = formidable({
 			multiples: false,
-			uploadDir: __dirname + "/../public/images",
+			uploadDir: __dirname + "/../public/images/blogs",
 			keepExtensions: true,
 			allowEmptyFiles: false,
 		});
@@ -55,7 +55,7 @@ const blogController = {
 	update: async function (req, res) {
 		const form = formidable({
 			multiples: false,
-			uploadDir: __dirname + "/../public/images",
+			uploadDir: __dirname + "/../public/images/blogs",
 			keepExtensions: true,
 		});
 
