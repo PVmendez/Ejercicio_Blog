@@ -8,5 +8,9 @@ package-lock.json
 #Ignore environment
 .env
 
+#Ignore settings
+.settings.json
+
 #Ignore blog images
 public/images/blogs/
+
