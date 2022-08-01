@@ -21,52 +21,49 @@
                     <h1 class="fw-bold text-center tituloBlog">THE BLOG</h1>
                     <hr class="my-12">
                 </div>
-                <div class="row d-flex">
-                    <div class="col-lg-6 col-md-12">
-                        <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[0].id%>">
-                            <div class="card w-90 d-inline-block h-90 bg-transparent">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-xl-6 col-md-12 d-flex justify-content-between align-space-between">
+                        <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[0].slug%>">
+                            <div class="card w-90 d-inline-block h-90 bg-transparent border-0">
                                 <img src=<%="/images/blogs/" + orderedBlogs[0].image %> class="card-img-top"
                                 alt="articleImage">
                                 <div class="card-body">
                                     <div class="text-secondary">
                                         <%= orderedBlogs[0].date%>
                                     </div>
-                                    <h1>
+                                    <h4 class="fw-bold">
                                         <%= orderedBlogs[0].title%>
-                                    </h1>
-                                    <p class="card-text">
+                                    </h4>
+                                    <p class="card-text text-secondary">
                                         <%= orderedBlogs[0].content%>
                                     </p>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-xl-6 col-md-12">
                         <% let cont=orderedBlogs.length; %>
                             <% if(cont>4){ %>
                                 <% cont=4; %>
                                     <% } %>
                                         <% for(let i=1; i<cont; i++) { %>
                                             <a class="text-decoration-none text-reset"
-                                                href="/blog/<%=orderedBlogs[i].id%>">
-                                                <div class="card mb-3 border-0 mx-auto bg-transparent"
+                                                href="/blog/<%=orderedBlogs[i].slug%>">
+                                                <div class="card mb-3 border-0  bg-transparent"
                                                     style="max-width: 540px;">
-                                                    <div class="row g-0">
-                                                        <div class="col-md-4">
+                                                    <div class="row g-0 d-flex justify-content-center align-items-center">
+                                                        <div class="col-lg-5 col-md-3  smnone">
                                                             <img src=<%="/images/blogs/" + orderedBlogs[i].image %>
                                                             class="img-fluid rounded-start" alt="...">
                                                         </div>
-                                                        <div class="col-md-8">
+                                                        <div class="col-lg-7 col-md-9 col-sm-7 col-7">
                                                             <div class="card-body">
                                                                 <div class="text-secondary">
                                                                     <%= orderedBlogs[i].date%>
                                                                 </div>
-                                                                <h1>
+                                                                <h4 class="fw-bold">
                                                                     <%= orderedBlogs[i].title%>
-                                                                </h1>
-                                                                <p class="card-text">
-                                                                    <%= orderedBlogs[i].content%>
-                                                                </p>
+                                                                </h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -84,7 +81,7 @@
                 <div class="row">
                     <% for(let i=4; i<orderedBlogs.length; i++){ %>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3">
-                            <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[i].id%>">
+                            <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[i].slug%>">
                                 <div class="card border-0" style="width: 18rem;">
                                     <img src=<%="/images/blogs/" + orderedBlogs[i].image %> class="card-img-top"
                                     alt="...">
@@ -92,10 +89,10 @@
                                         <div class="text-secondary">
                                             <%= orderedBlogs[i].date%>
                                         </div>
-                                        <h1>
+                                        <h3>
                                             <%= orderedBlogs[i].title%>
-                                        </h1>
-                                        <p class="card-text">
+                                        </h3>
+                                        <p class="card-text text-secondary">
                                             <%= orderedBlogs[i].content%>
                                         </p>
                                     </div>

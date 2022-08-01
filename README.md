@@ -13,3 +13,5 @@
 ### - Sequelize
 
 ### - Formidable
+
+### - Slugify
