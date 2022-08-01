@@ -12,7 +12,7 @@
 
     <h1 class="my-5">Crear nuevo articulo</h1>
 
-    <form action="/blog" method="post">
+    <form action="/blog" method="post" enctype="multipart/form-data">
 
       <div class="form-floating mb-3">
         <input name="title" type="text" class="form-control" id="title" placeholder="Título" required>
@@ -24,10 +24,11 @@
         <label for="content">Contenido</label>
       </div>
 
-      <label for="imgLink" class="form-label">Imagen URL</label>
-      <div class="input-group mb-3">
-        <input name="image" type="text" class="form-control" id="imgLink" required>
+      <div class="mb-3">
+        <label for="image" class="form-label">Sube una imagen: </label>
+        <input name="image" class="form-control" type="file" id="image" accept="image/*" required>
       </div>
+
 
       <button type="submit" class="btn btn-success">Guardar</button>
       <a href="/admin">

@@ -7,3 +7,6 @@ package-lock.json
 
 #Ignore environment
 .env
+
+#Ignore blog images
+public/images/blogs/
