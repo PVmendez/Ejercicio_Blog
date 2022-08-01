@@ -7,7 +7,7 @@ const commentController = {
       content: req.body.comentario,
       date: hoy,
       articleId: req.params.id,
-      userId: req.user.id,
+      userId: 1,
     });
 
     res.redirect("/blog/" + req.params.id); 
