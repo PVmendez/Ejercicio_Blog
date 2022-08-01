@@ -23,7 +23,7 @@
                 </div>
                 <div class="row d-flex">
                     <div class="col-lg-6 col-md-12">
-                        <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[0].id%>">
+                        <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[0].slug%>">
                             <div class="card w-90 d-inline-block h-90 bg-transparent">
                                 <img src=<%="/images/blogs/" + orderedBlogs[0].image %> class="card-img-top"
                                 alt="articleImage">
@@ -48,7 +48,7 @@
                                     <% } %>
                                         <% for(let i=1; i<cont; i++) { %>
                                             <a class="text-decoration-none text-reset"
-                                                href="/blog/<%=orderedBlogs[i].id%>">
+                                                href="/blog/<%=orderedBlogs[i].slug%>">
                                                 <div class="card mb-3 border-0 mx-auto bg-transparent"
                                                     style="max-width: 540px;">
                                                     <div class="row g-0">
@@ -84,7 +84,7 @@
                 <div class="row">
                     <% for(let i=4; i<orderedBlogs.length; i++){ %>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3">
-                            <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[i].id%>">
+                            <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[i].slug%>">
                                 <div class="card border-0" style="width: 18rem;">
                                     <img src=<%="/images/blogs/" + orderedBlogs[i].image %> class="card-img-top"
                                     alt="...">
