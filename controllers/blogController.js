@@ -4,8 +4,12 @@ const fs = require("fs");
 
 const blogController = {
 	index: async (req, res) => {
-		const blogs = await Article.findAll();
-		res.render("home", { blogs });
+		const blogs = await Article.findAll({ order: [['updatedAt', 'DESC']] });
+		const orderedBlogs = [];
+		for (const data of blogs) {
+			orderedBlogs.push(data.dataValues);
+		}
+		res.render("home", { orderedBlogs });
 	},
 	create: async function (req, res) {
 		res.render("create");
@@ -85,6 +89,9 @@ const blogController = {
 		});
 	},
 	destroy: async function (req, res) {
+		const imageName = await Article.findByPk(req.params.id);
+		fs.unlinkSync(__dirname + "/../public/images/blogs/" + imageName.dataValues.image);
+
 		const blogs = await Article.destroy({
 			where: {
 				id: req.params.id,
@@ -109,9 +116,7 @@ const blogController = {
 		const articles = await Article.findOne({ where: { id: req.params.id } });
 
 		if (articles) {
-			const comments = await Comment.findAll({
-				where: { articleId: req.params.id },
-			});
+			const comments = await Comment.findAll({ where: { articleId: req.params.id } });
 			const user = await User.findOne({ where: { id: articles.userId } });
 			res.render("comments", { articles, comments, user });
 		} else {

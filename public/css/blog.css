@@ -151,8 +151,7 @@ article .imagen1,
 }
 
 @media (max-width: 1020px) {
-  .btnback img {
-  }
+  
 }
 
 .courv {
@@ -423,3 +422,16 @@ body {
    width: 320px;
  }
 }
+
+.tituloBlog{
+  font-size: 10rem !important;
+}
+
+.logoImg{
+  width: 80px !important;
+  border-radius: 100%;
+}
+
+
+
+
