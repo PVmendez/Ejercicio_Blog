@@ -89,6 +89,9 @@ const blogController = {
 		});
 	},
 	destroy: async function (req, res) {
+		const imageName = await Article.findByPk(req.params.id);
+		fs.unlinkSync(__dirname + "/../public/images/blogs/" + imageName.dataValues.image);
+
 		const blogs = await Article.destroy({
 			where: {
 				id: req.params.id,
