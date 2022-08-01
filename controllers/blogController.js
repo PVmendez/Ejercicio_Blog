@@ -187,6 +187,9 @@ const blogController = {
 			res.redirect("/");
 		}
 	},
+	jsonArticles: async (req, res)=>{
+
+	},
 };
 
 module.exports = blogController;

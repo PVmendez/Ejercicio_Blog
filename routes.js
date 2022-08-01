@@ -39,4 +39,7 @@ router.get("/blog/delete/:id", blogController.destroy);
 //Admin
 router.get("/admin", blogController.admin);
 
+//Articles en formato json
+router.get("/api/articulos", blogController.jsonArticles);
+
 module.exports = router;

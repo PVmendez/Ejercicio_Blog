@@ -30,13 +30,15 @@
       href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
       rel="stylesheet"
     />
-
     <!-- Stylesheet -->
     <link href="/css/blog.css" rel="stylesheet" />
+    
   </head>
 
   <body data-spy="scroll" data-target=".navbar" data-offset="51">
+    <%-include("partials/navbar.ejs")%>
     <!-- Article Start -->
+  
 
     <div class="container-all" id="move-content">
       <div
@@ -44,7 +46,7 @@
         style="background-image: url('<%= "/images/blogs/" + articles.image %>')"
       >
         <div class="container-info-cover">
-          <h1><%= articles.title %></h1>
+          <h1><%#= articles.title %></h1>
         </div>
       </div>
 
