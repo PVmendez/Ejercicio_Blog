@@ -19,13 +19,13 @@ router.get("/blog/:id", blogController.comentariosDeArticulo);
 router.post("/blog/:id", commentController.postearComentario);
 
 // get editar articulo
-router.get("/editar/:id", commentController.editarComentario);
+router.get("/blog/editar/:id", commentController.editarComentario);
 
 // patch comentarios/editar
-router.patch("/editar/:id", commentController.guardarCambiosComentario);
+router.post("/blog/editar/:id", commentController.guardarCambiosComentario);
 
 // delete editar articulo
-router.delete("/eliminar/:id", commentController.eliminarComentario);
+router.get("/blog/eliminar/:id", commentController.eliminarComentario);
 
 //dirige a la ventana para modificar con la info del usuario eligido
 router.get("/blog/edit/:id", blogController.edit);
