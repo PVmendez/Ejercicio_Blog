@@ -113,7 +113,6 @@ const blogController = {
 		res.send(html);
 	},
 	comentariosDeArticulo: async (req, res) => {
-		console.log(req.params.id);
 		const articles = await Article.findOne({ where: { id: req.params.id } });
 
 		if (articles) {
