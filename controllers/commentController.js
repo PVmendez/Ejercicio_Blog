@@ -37,11 +37,9 @@ const commentController = {
   eliminarComentario: async (req, res) => {
     const comment = await Comment.findOne({ where: { id: req.params.id } });
     if (comment) {
-        console.log("entra 1");
         const destroyComment = await Comment.destroy({ where: { id: req.params.id } }, );
         res.redirect("/blog/" + comment.articleId);
     } else {
-      console.log("entra 3");
       res.redirect("/");
     }
   },
