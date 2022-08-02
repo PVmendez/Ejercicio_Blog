@@ -1,50 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <title>Articulo</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon" />
+<head>
+  <meta charset="utf-8" />
+  <title>Articulo</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon" />
 
-    <!-- CSS Libraries -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link href="lib/animate/animate.min.css" rel="stylesheet" />
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
-    <!-- Stylesheet -->
-    <link href="/css/blog.css" rel="stylesheet" />
-  </head>
+  <!-- CSS Libraries -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="lib/animate/animate.min.css" rel="stylesheet" />
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link href="/css/blog.css" rel="stylesheet" />
 
-  <body data-spy="scroll" data-target=".navbar" data-offset="51">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+  <%-include("partials/navbar.ejs")%>
     <!-- Article Start -->
 
+
     <div class="container-all" id="move-content">
-      <div
-        class="article-container-cover fondo"
-        style="background-image: url('<%= "/images/blogs/" + articles.image %>')"
-      >
+      <div class="article-container-cover fondo" style="background-image: url('<%= " /images/blogs/" + article.image %>')">
         <div class="container-info-cover">
-          <h1><%= articles.title %></h1>
+          <h1>
+            <%#= article.title %>
+          </h1>
         </div>
       </div>
 
@@ -52,26 +43,25 @@
         <div class="row">
           <div class="col-12">
             <article>
-              <h1><%= articles.title %></h1>
-              <p><%= articles.content %></p>
-              <p>Posted by <%= user.firstname %>, <%= user.lastname %></p>
+              <h1>
+                <%= article.title %>
+              </h1>
+              <p>
+                <%= article.content %>
+              </p>
+              <p>Posted by <%= article.user.firstname %>, <%= article.user.lastname %>
+              </p>
             </article>
           </div>
 
           <div class="col-12 d-flex justify-content-center">
             <!-- nuevo comentario -->
             <div style="width: 40rem" class="mb-3">
-              <form method="post" action="/blog/<%= articles.id %> ">
-                <label for="exampleFormControlTextarea1" class="form-label my-2"
-                  ><strong> Deje su comentario</strong></label
-                >
-                <textarea
-                  style="font-size: 0.8rem"
-                  name="comentario"
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                ></textarea>
+              <form method="post" action="/blog/<%= article.id %> ">
+                <label for="exampleFormControlTextarea1" class="form-label my-2"><strong> Deje su
+                    comentario</strong></label>
+                <textarea style="font-size: 0.8rem" name="comentario" class="form-control"
+                  id="exampleFormControlTextarea1" rows="3"></textarea>
                 <button type="submit" class="btn btn-dark my-2">Enviar</button>
               </form>
               <a href="/blog">
@@ -82,58 +72,47 @@
           <div class="col-12">
             <div class="comments-container">
               <ul id="comments-list" class="comments-list">
-                <% for(const comment of comments) {%>
-                <li>
-                  <div class="comment-main-level">
-                    <!-- Avatar -->
-                    <div class="comment-avatar">
-                      <img src="<%= user.profileimg %> " alt="" />
-                    </div>
-                    <!-- Contenedor del Comentario -->
-                    <div class="comment-box">
-                      <div class="comment-head">
-                        <div class="row">
-                          <div class="col-5 m-1">
-                            <h6 class="comment-name by-author">
-                              <%= user.firstname %> <%= user.lastname %>
-                            </h6>
-                            <span>hace 20 minutos</span>
-                          </div>
-                          <div class="col-6">
-                            <div class="row justify-content-end m-1">
-                              <form
-                                action="/blog/editar/<%= comment.id  %>"
-                                method="get"
-                              >
-                                <button
-                                  type="submit"
-                                  class="btn btn-warning rounded-3"
-                                  style="font-size: 11px"
-                                >
-                                  Editar
-                                </button>
-                              </form>
-                              <form
-                                action="/blog/eliminar/<%= comment.id %>"
-                                method="get"
-                              >
-                                <button
-                                  type="submit"
-                                  class="btn btn-danger rounded-3 ml-1"
-                                  style="font-size: 11px"
-                                >
-                                  Eliminar
-                                </button>
-                              </form>
+                <% for(const comment of article.comments) {%>
+                  <li>
+                    <div class="comment-main-level">
+                      <!-- Avatar -->
+                      <div class="comment-avatar">
+                        <img src="<%= comment.user.profileimg %> " alt="" />
+                      </div>
+                      <!-- Contenedor del Comentario -->
+                      <div class="comment-box">
+                        <div class="comment-head">
+                          <div class="row">
+                            <div class="col-5 m-1">
+                              <h6 class="comment-name by-author">
+                                <%= comment.user.firstname %>
+                                  <%= comment.user.lastname %>
+                              </h6>
+                              <!--   <span>hace 20 minutos</span> -->
+                            </div>
+                            <div class="col-6">
+                              <div class="row justify-content-end m-1">
+                                <form action="/blog/editar/<%= comment.id  %>" method="get">
+                                  <button type="submit" class="btn btn-warning rounded-3" style="font-size: 11px">
+                                    Editar
+                                  </button>
+                                </form>
+                                <form action="/blog/eliminar/<%= comment.id %>" method="get">
+                                  <button type="submit" class="btn btn-danger rounded-3 ml-1" style="font-size: 11px">
+                                    Eliminar
+                                  </button>
+                                </form>
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <div class="comment-content">
+                          <%= comment.content %>
+                        </div>
                       </div>
-                      <div class="comment-content"><%= comment.content %></div>
                     </div>
-                  </div>
-                </li>
-                <% } %>
+                  </li>
+                  <% } %>
               </ul>
             </div>
           </div>
@@ -156,5 +135,6 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
-  </body>
+</body>
+
 </html>
