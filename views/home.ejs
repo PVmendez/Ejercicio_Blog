@@ -25,7 +25,9 @@
                     <div class="col-xl-6 col-md-12 d-flex justify-content-between align-space-between">
                         <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[0].slug%>">
                             <div class="card w-90 d-inline-block h-90 bg-transparent border-0">
-                                <img src=<%="/images/blogs/" + orderedBlogs[0].image %> class="card-img-top"
+                                <!-- <img src=<%#="/images/blogs/" + orderedBlogs[0].image %> class="card-img-top"
+                                alt="articleImage"> -->
+                                <img src=<%=orderedBlogs[0].image %> class="card-img-top"
                                 alt="articleImage">
                                 <div class="card-body">
                                     <div class="text-secondary">
@@ -53,13 +55,15 @@
                                                     style="max-width: 540px;">
                                                     <div class="row g-0 d-flex justify-content-center align-items-center">
                                                         <div class="col-lg-5 col-md-3  smnone">
-                                                            <img src=<%="/images/blogs/" + orderedBlogs[i].image %>
+                                                            <!-- <img src=<%#="/images/blogs/" + orderedBlogs[i].image %>
+                                                            class="img-fluid rounded-start" alt="..."> -->
+                                                            <img src=<%=orderedBlogs[i].image %>
                                                             class="img-fluid rounded-start" alt="...">
                                                         </div>
                                                         <div class="col-lg-7 col-md-9 col-sm-7 col-7">
                                                             <div class="card-body">
                                                                 <div class="text-secondary">
-                                                                    <%= orderedBlogs[i].date%>
+                                                                    <%= format(format(orderedBlogs[i].date, `MMMM dd`, `yyyy`))%>
                                                                 </div>
                                                                 <h4 class="fw-bold">
                                                                     <%= orderedBlogs[i].title%>
@@ -83,7 +87,9 @@
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3">
                             <a class="text-decoration-none text-reset" href="/blog/<%=orderedBlogs[i].slug%>">
                                 <div class="card border-0" style="width: 18rem;">
-                                    <img src=<%="/images/blogs/" + orderedBlogs[i].image %> class="card-img-top"
+                                    <!-- <img src=<%="/images/blogs/" + orderedBlogs[i].image %> class="card-img-top"
+                                    alt="..."> -->
+                                    <img src=<%=orderedBlogs[i].image %> class="card-img-top"
                                     alt="...">
                                     <div class="card-body">
                                         <div class="text-secondary">
