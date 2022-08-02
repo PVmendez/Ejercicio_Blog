@@ -32,7 +32,7 @@ const blogController = {
 			) {
 				res.send("Error al crear articulo, titulo o contenido vacio.");
 			} else {
-				const date = new Date();
+				
 				const slug = slugify(fields.title, {
 					replacement: "-",
 					lower: true,
