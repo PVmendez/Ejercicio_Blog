@@ -11,8 +11,6 @@ const sequelize = new Sequelize(
 	}
 );
 
-sequelize.sync();
-
 const User = require("./UserModel")(sequelize, Model, DataTypes);
 const Comment = require("./CommentsModel")(sequelize, Model, DataTypes);
 const Article = require("./ArticleModel")(sequelize, Model, DataTypes);
