@@ -172,23 +172,19 @@ const blogController = {
 		res.send(html);
 	},
 	comentariosDeArticulo: async (req, res) => {
-		let articles = await Article.findOne({ where: { id: req.params.id } });
-		if (!articles) {
-			articles = await Article.findOne({ where: { slug: req.params.id } });
+		let article = await Article.findByPk(req.params.id, { include: [User, { model: Comment, include: [User] }] });
+		if (!article) {
+			article = await Article.findOne({ where: { slug: req.params.id }, include: [User, { model: Comment, include: [User] }] });
 		}
-
-		if (articles) {
-			const comments = await Comment.findAll({
-				where: { articleId: req.params.id },
-			});
-			const user = await User.findOne({ where: { id: articles.userId } });
-			res.render("comments", { articles, comments, user });
-		} else {
-			res.redirect("/");
+		if (!article) {
+			res.redirect("/blog");
 		}
+		console.log(article);
+		res.render("comments", { article });
 	},
-	jsonArticles: async (req, res)=>{
-
+	jsonArticles: async (req, res) => {
+		const articles = await Article.findAll();
+		res.json(articles);
 	},
 };
 
