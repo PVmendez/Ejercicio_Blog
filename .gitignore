@@ -1,15 +1,11 @@
 #Ignore node_modules
 node_modules/
 
-#Ignore packages
-package.json
-package-lock.json
-
 #Ignore environment
 .env
 
 #Ignore settings
-.settings.json
+.vscode
 
 #Ignore blog images
 public/images/blogs/
