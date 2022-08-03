@@ -1,0 +1,32 @@
+{
+  "name": "ejercicio_blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PVmendez/Ejercicio_Blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PVmendez/Ejercicio_Blog/issues"
+  },
+  "homepage": "https://github.com/PVmendez/Ejercicio_Blog#readme",
+  "dependencies": {
+    "@faker-js/faker": "^7.3.0",
+    "dateformat": "^5.0.3",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "faker": "^5.5.3",
+    "formidable": "^2.0.1",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.7",
+    "nodemon": "^2.0.19",
+    "sequelize": "^6.21.3"
+  }
+}
