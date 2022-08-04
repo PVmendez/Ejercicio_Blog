@@ -42,4 +42,21 @@ router.get("/admin", blogController.admin);
 //Articles en formato json
 router.get("/api/articulos", blogController.jsonArticles);
 
+//Rutas passport
+
+//Vista para registrarse el usuario
+// router.get("/registro", logeoController.index);
+
+// //Creacion efectiva del usuario
+// router.post("/registro", logeoController.create);
+
+// // //Para inciar sesion el usuario
+// router.get("/login", logeoController.indexLogin);
+
+// // //Entrada efectiva del usuario a su cuenta
+// router.get("/login", logeoController.createLogin);
+
+// //Hacer que el cliente salfa de su usuario
+// router.get("/logout");
+
 module.exports = router;
