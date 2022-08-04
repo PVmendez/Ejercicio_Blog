@@ -6,6 +6,7 @@ const db = require("./db");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const bcrypt = require("bcryptjs");
 
 const APP_PORT = process.env.APP_PORT || 3000;
 
@@ -19,25 +20,25 @@ app.set("view engine", "ejs");
 app.use(
   session({
     secret: "AlgúnTextoSuperSecreto",
-    resave: false, // Docs: "The default value is true, but using the default has been deprecated".
-    saveUninitialized: false, // Docs: "The default value is true, but using the default has been deprecated".
+    resave: false,
+    saveUninitialized: false,
   })
 );
 
 app.use(passport.session());
-// app.use(passport.initialize());
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
-    const user = await User.findOne({ email: username }, function (err, user) {
-      if (!user) {
-        return done(null, false, { message: "Incorrect email o password" });
-      }
-      if (user.password != password) {
-        return done(null, false, { message: "Incorrect email o password" });
-      }
-      return done(null, user);
-    });
+    const user = await User.findOne({ where: { email: username } });
+    if (!user) {
+      return done(null, false, { message: "Incorrect email o password" });
+    }
+    const comparePassword = await bcrypt.compare(password, user.password);
+
+    if (!comparePassword) {
+      return done(null, false, { message: "Incorrect email o password" });
+    }
+    return done(null, user);
   })
 );
 
@@ -86,7 +87,15 @@ app.get("/login", async (req, res) => {
   res.render("login");
 });
 
-app.post("/login", async (req, res) => {}), app.use(routes);
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/admin",
+    failureRedirect: "/login",
+  })
+);
+
+app.use(routes);
 
 app.listen(APP_PORT, () => {
   console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}.`);

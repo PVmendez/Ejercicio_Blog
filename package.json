@@ -18,6 +18,7 @@
   "homepage": "https://github.com/PVmendez/Ejercicio_Blog#readme",
   "dependencies": {
     "@faker-js/faker": "^7.3.0",
+    "bcryptjs": "^2.4.3",
     "dateformat": "^5.0.3",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",

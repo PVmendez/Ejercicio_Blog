@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const blogController = require("./controllers/blogController");
 const commentController = require("./controllers/commentController");
-const logeoController = require("./controllers/logeoController");
 
 //Muestra todos los articulos en la vista HOME
 router.get("/blog", blogController.index);
