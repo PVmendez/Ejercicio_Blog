@@ -45,9 +45,9 @@ const blogController = {
           content: fields.content,
           slug,
           image: files.image.newFilename,
-          date,
           userId: 1,
         });
+
         res.redirect("/admin");
       }
     });
@@ -89,6 +89,19 @@ const blogController = {
   show: async function (req, res) {
     const blogs = await Article.findAll();
     res.render("blog");
+
+    async function show(req, res) {
+      const article = await Article.findByPk(req.params.id, {
+        include: [User, { model: Comment, include: User }],
+      });
+      if (article === null) {
+        res.status(404).send("Not Found");
+      } else {
+        res.render("article", { article, format });
+      }
+    }
+
+
   },
   edit: async function (req, res) {
     const blog = await Article.findOne({
@@ -97,7 +110,11 @@ const blogController = {
       },
       include: User,
     });
-    res.render("edit", { blog });
+    if (blog === null) {
+      res.status(404).send("Not Found");
+    } else {
+      res.render("edit", { blog });
+    }
   },
   update: async function (req, res) {
     const form = formidable({

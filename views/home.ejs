@@ -15,7 +15,7 @@
 <body class="bg-light">
     <div class="container bg-dark text-white">
         <section class="p-5">
-            <%-include("partials/navbar.ejs")%>
+            <%-include("partials /navbar.ejs")%>
                 <div class="row">
                     <hr class="my-12">
                     <h1 class="fw-bold text-center tituloBlog">THE BLOG</h1>
@@ -27,19 +27,24 @@
                             <div class="card w-90 d-inline-block h-90 bg-transparent border-0">
                                 <!-- <img src=<%#="/images/blogs/" + orderedBlogs[0].image %> class="card-img-top"
                                 alt="articleImage"> -->
-                                <img src=<%=orderedBlogs[0].image %> class="card-img-top"
-                                alt="articleImage">
-                                <div class="card-body">
-                                    <div class="text-secondary">
-                                        <%= orderedBlogs[0].date%>
-                                    </div>
-                                    <h4 class="fw-bold">
-                                        <%= orderedBlogs[0].title%>
-                                    </h4>
-                                    <p class="card-text text-secondary">
-                                        <%= orderedBlogs[0].content%>
-                                    </p>
-                                </div>
+                                <% if (orderedBlogs[0].image.includes("https")) { %>
+                                    <img src=<%=orderedBlogs[0].image %> class="card-img-top"
+                                    alt="articleImage">
+                                    <% }else{ %>
+                                        <img src="/images/blogs<%=orderedBlogs[0].image%>" class=" card-img-top"
+                                            alt="articleImage">
+                                        <% } %>
+                                            <div class="card-body">
+                                                <div class="text-secondary">
+                                                    <%= orderedBlogs[0].date%>
+                                                </div>
+                                                <h4 class="fw-bold">
+                                                    <%= orderedBlogs[0].title%>
+                                                </h4>
+                                                <p class="card-text text-secondary">
+                                                    <%= orderedBlogs[0].content%>
+                                                </p>
+                                            </div>
                             </div>
                         </a>
                     </div>
@@ -53,7 +58,8 @@
                                                 href="/blog/<%=orderedBlogs[i].slug%>">
                                                 <div class="card mb-3 border-0  bg-transparent"
                                                     style="max-width: 540px;">
-                                                    <div class="row g-0 d-flex justify-content-center align-items-center">
+                                                    <div
+                                                        class="row g-0 d-flex justify-content-center align-items-center">
                                                         <div class="col-lg-5 col-md-3  smnone">
                                                             <!-- <img src=<%#="/images/blogs/" + orderedBlogs[i].image %>
                                                             class="img-fluid rounded-start" alt="..."> -->
