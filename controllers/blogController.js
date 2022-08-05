@@ -62,12 +62,12 @@ const blogController = {
       },
     });
 
-    const articuloname = "Se ha creado un nuevo articulo ✔";
-    const listreceivers = [
-      "valentino.mendez.rey@gmail.com",
-      "mercedestorrendell@gmail.com",
-      "sebastianguadalupe00@gmail.com",
-    ];
+		const articuloname = "Se ha creado un nuevo articulo ✔";
+		const listreceivers = [
+			//"valentino.mendez.rey@gmail.com",
+			//"mercedestorrendell@gmail.com",
+			//"sebastianguadalupe00@gmail.com",
+		];
 
     let info = await transporter.sendMail({
       from: "Remitente",
@@ -149,7 +149,7 @@ const blogController = {
     fs.unlinkSync(
       __dirname + "/../public/images/blogs/" + imageName.dataValues.image
     );
-
+    
     const blogs = await Article.destroy({
       where: {
         id: req.params.id,
