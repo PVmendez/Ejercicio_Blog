@@ -65,9 +65,9 @@ const blogController = {
 
 		const articuloname = "Se ha creado un nuevo articulo ✔";
 		const listreceivers = [
-			"valentino.mendez.rey@gmail.com",
-			"mercedestorrendell@gmail.com",
-			"sebastianguadalupe00@gmail.com",
+			//"valentino.mendez.rey@gmail.com",
+			//"mercedestorrendell@gmail.com",
+			//"sebastianguadalupe00@gmail.com",
 		];
 
 		let info = await transporter.sendMail({
@@ -179,7 +179,6 @@ const blogController = {
 		if (!article) {
 			res.redirect("/blog");
 		}
-		console.log(article);
 		res.render("comments", { article });
 	},
 	jsonArticles: async (req, res) => {

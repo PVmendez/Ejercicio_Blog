@@ -1,7 +1,7 @@
-const db = require("./models");
+const db = require("./models/Model");
 
 module.exports = async () => {
-  
+
   // Crear tablas:
   await db.sequelize.sync({ force: true });
 
